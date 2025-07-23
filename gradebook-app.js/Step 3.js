@@ -50,3 +50,11 @@ console.log(hasPassingGrade(53));
 
 console.log(hasPassingGrade(87));  
 // Expected output: true (B)
+
+
+Why it works:
+✅ You use your already-written getGrade to figure out the letter grade.
+✅ If it’s "F" → fail → false.
+✅ Anything else → pass → true.
+
+When you’re ready, send me Step 4 and we’ll wrap this up and get your repo & commits ready to go! 🌟
