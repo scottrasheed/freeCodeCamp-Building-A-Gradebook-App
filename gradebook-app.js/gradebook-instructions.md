@@ -1,42 +1,31 @@
-# Gradebook Project
+Gradebook Project Notes (with Code & Coding Terms)
+Step 1: Calculate the Average Score
+Function: getAverage(scores)
 
-This project is a simple gradebook program that helps calculate the average class score, convert numeric scores into letter grades, check if a student passed, and generate a personalized message for the student.
+Goal: Calculate the arithmetic mean of the input array.
 
----
+How: Use a for loop (iteration) to add each score to a sum variable.
 
-## Step 1: Calculate the Average Score
+Then: Divide the total sum by the number of scores (scores.length) to get the average.
 
-**Function:** `getAverage(scores)`
-
-Calculates the arithmetic mean of an array of scores.
-
-- Uses a loop to sum all scores.
-- Divides the total sum by the number of scores.
-
-```js
+js
+Copy
+Edit
 function getAverage(scores) {
   let sum = 0;
   for (const score of scores) {
-    sum += score; // add each score to sum
+    sum += score;           // accumulate scores
   }
-  return sum / scores.length; // calculate average
+  return sum / scores.length; // compute average
 }
 Step 2: Convert Numeric Scores to Letter Grades
 Function: getGrade(score)
 
-Converts a numeric score to a letter grade using conditional logic:
+Goal: Map a numeric score to a letter grade.
 
-100 → "A++"
+How: Use conditional statements (if / else if / else) with comparison operators (>=, ===) to check which range the score falls into.
 
-90–99 → "A"
-
-80–89 → "B"
-
-70–79 → "C"
-
-60–69 → "D"
-
-<60 → "F"
+Returns a string grade based on ranges.
 
 js
 Copy
@@ -59,7 +48,11 @@ function getGrade(score) {
 Step 3: Determine If Student Passed
 Function: hasPassingGrade(score)
 
-Returns true if the student's grade is passing (not "F"), otherwise false.
+Goal: Return a boolean indicating if the student passed.
+
+How: Calls getGrade(score) and compares the result to "F".
+
+Returns true if not "F", else false.
 
 js
 Copy
@@ -70,13 +63,19 @@ function hasPassingGrade(score) {
 Step 4: Generate a Message for the Student
 Function: studentMsg(totalScores, studentScore)
 
-Calculates class average.
+Goal: Produce a formatted string that includes:
 
-Gets student's letter grade.
+Class average (from getAverage)
 
-Checks if the student passed.
+Student’s letter grade (from getGrade)
 
-Builds and returns a message string.
+Pass/fail message (based on hasPassingGrade)
+
+Uses function composition to reuse existing logic.
+
+Uses .toFixed(1) to format the average to 1 decimal place.
+
+Builds message with string concatenation and control flow.
 
 js
 Copy
@@ -91,17 +90,5 @@ function studentMsg(totalScores, studentScore) {
   } else {
     message += "You failed the course.";
   }
-
   return message;
 }
-Example Usage and Output
-js
-Copy
-Edit
-console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
-Output:
-
-vbnet
-Copy
-Edit
-Class average: 71.7. Your grade: F. You failed the course.
