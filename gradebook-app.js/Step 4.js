@@ -1,73 +1,51 @@
-// Step 1: Calculate the average score of the class
+// Calculates the average of an array of scores
 function getAverage(scores) {
   let sum = 0;
 
-  // Add all the scores together
+  // Loop through each score and add it to the total sum
   for (const score of scores) {
     sum += score;
   }
 
-  // Divide the total sum by the number of scores to get the average
+  // Return the total sum divided by the number of scores (average)
   return sum / scores.length;
 }
 
-// Step 2: Convert a numeric score to a letter grade
+// Determines the letter grade based on the numeric score
 function getGrade(score) {
   if (score === 100) {
-    return "A++";           // Perfect score
+    return "A++"; // Perfect score
   } else if (score >= 90) {
-    return "A";             // 90-99
+    return "A";
   } else if (score >= 80) {
-    return "B";             // 80-89
+    return "B";
   } else if (score >= 70) {
-    return "C";             // 70-79
+    return "C";
   } else if (score >= 60) {
-    return "D";             // 60-69
+    return "D";
   } else {
-    return "F";             // Below 60 is failing
+    return "F"; // Below 60 is a failing grade
   }
 }
 
-// Step 3: Check if the student has a passing grade
+// Checks if the score is a passing grade (not an "F")
 function hasPassingGrade(score) {
-  // Use getGrade to get the letter grade and check if it's not "F"
   return getGrade(score) !== "F";
 }
 
-// Step 4: Generate a message for the student with results
+// Generates a message showing the class average, student grade, and pass/fail status
 function studentMsg(totalScores, studentScore) {
-  // Calculate the class average
-  const average = getAverage(totalScores);
+  const average = getAverage(totalScores);     // Calculate class average
+  const grade = getGrade(studentScore);        // Get student's letter grade
+  let message = `Class average: ${average}. Your grade: ${grade}. `;
 
-  // Get the student's letter grade
-  const grade = getGrade(studentScore);
-
-  // Start building the message with average and grade info
-  let message = "Class average: " + average.toFixed(1) + ". Your grade: " + grade + ". ";
-
-  // Add pass/fail status
+  // Add pass/fail message based on the grade
   if (grade !== "F") {
     message += "You passed the course.";
   } else {
     message += "You failed the course.";
   }
 
-  // Return the full message
-  return message;
+  return message; // Return the full message string
 }
 
-/*
-Example usage and output:
-Calling studentMsg with a class scores array and a student score:
-
-studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37);
-
-Returns:
-
-"Class average: 71.7. Your grade: F. You failed the course."
-*/
-
-// Test the function - output shown below
-console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
-// Output:
-// Class average: 71.7. Your grade: F. You failed the course.
